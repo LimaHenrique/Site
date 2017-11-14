@@ -74,10 +74,19 @@ WSGI_APPLICATION = 'siteFaculdade.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+with open('\home\data\mysql\MYSQLCONNSTR_localdb.txt') as arquivo:
+    linha = arquivo.read()
+    lista = linha.split(';')
+    x = dict(s.split('=',1) for s in lista)
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': x['Database'],
+        'USER': x['User Id'],
+        'PASSWORD': x['Password'],
+        'HOST': x['Data Source'].split(':')[0],
+        'PORT': x['Data Source'].split(':')[1],
     }
 }
 
