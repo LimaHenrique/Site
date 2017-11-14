@@ -16,10 +16,10 @@ class NovoAlunoForm(forms.ModelForm):
             if commit:
                 user.save()
             return user
-    class AlterarAlunoForm(forms.ModelForm):
-        class Meta:
-            model = Aluno
-            fields = ('nome', 'curso')
+class AlterarAlunoForm(forms.ModelForm):
+    class Meta:
+        model = Aluno
+        fields = ('nome', 'curso')
 
 class AlunoAdmin(UserAdmin):
     form = AlterarAlunoForm
